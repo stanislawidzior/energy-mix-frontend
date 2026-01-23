@@ -1,0 +1,192 @@
+$color-white: #fff;
+$color-bg-light: #fafafa;
+$color-bg-disabled: #f0f0f0;
+$color-text-dark: #333;
+$color-text-muted: #999;
+$color-text-label: #558b2f;
+$color-text-primary: #2d5016;
+$color-green-main: #66bb6a;
+$color-green-dark: #558b2f;
+$color-green-light: #c8e6c9;
+$color-border-light: #e8f5e9;
+$color-btn-disabled: #ccc;
+
+// Spacing Variables
+$spacing-sm: 0.5rem;
+$spacing-md: 0.75rem;
+$spacing-lg: 1rem;
+$spacing-xl: 1.5rem;
+$spacing-2xl: 2rem;
+
+// Border Variables
+$border-radius: 6px;
+$border-radius-lg: 8px;
+$border-green: 5px solid $color-green-main;
+$border-select: 2px solid $color-green-light;
+
+// Shadow Variables
+$shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+// Breakpoints
+$breakpoint-md: 768px;
+$breakpoint-sm: 600px;
+
+// Mixin for green card styling
+@mixin green-card {
+  background: $color-white;
+  border-radius: $border-radius-lg;
+  box-shadow: $shadow-sm;
+  border-left: $border-green;
+}
+
+.chart-wrapper {
+  text-align: center;
+  margin: $spacing-2xl 0;
+  padding: 0;
+  background: rgba(102, 187, 106, 0.08);
+  border-radius: $border-radius-lg;
+  overflow: hidden;
+
+  h1 {
+    color: $color-white;
+    background: linear-gradient(135deg, $color-green-main 0%, $color-green-dark 100%);
+    padding: $spacing-xl $spacing-2xl;
+    margin: 0;
+    box-shadow: 0 4px 12px rgba(102, 187, 106, 0.2);
+    border-bottom: 3px solid $color-green-dark;
+  }
+
+  .chart-container {
+    padding: $spacing-2xl;
+  }
+}
+
+.chart-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: $spacing-2xl;
+  padding: $spacing-2xl;
+
+  .chart {
+    flex: 1 1 300px;
+    max-width: 400px;
+    @include green-card;
+    padding: $spacing-lg;
+
+    canvas {
+      width: 100% !important;
+      height: auto !important;
+    }
+  }
+}
+
+.time-window-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-2xl;
+  padding: $spacing-2xl;
+  max-width: 1000px;
+  margin: 0 auto;
+
+  @media (max-width: $breakpoint-md) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.time-window-selector,
+.time-window-result {
+  @include green-card;
+  padding: $spacing-xl;
+}
+
+.time-window-selector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-lg;
+
+  h3 {
+    color: $color-text-primary;
+    margin: 0;
+  }
+
+  select {
+    padding: $spacing-md;
+    border: $border-select;
+    border-radius: $border-radius;
+    background: $color-bg-light;
+    color: $color-text-dark;
+    cursor: pointer;
+    width: 100%;
+    max-width: 250px;
+
+    &:hover:not(:disabled) {
+      border-color: $color-green-main;
+    }
+
+    &:disabled {
+      background-color: $color-bg-disabled;
+      color: $color-text-muted;
+    }
+  }
+
+  .calculate-btn {
+    padding: $spacing-md;
+    background: $color-green-main;
+    color: $color-white;
+    border: none;
+    border-radius: $border-radius;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    max-width: 250px;
+
+    &:hover:not(:disabled) {
+      background: $color-green-dark;
+    }
+
+    &:disabled {
+      background: $color-btn-disabled;
+    }
+  }
+}
+
+.time-window-result {
+  h2 {
+    color: $color-text-primary;
+    margin: 0 0 $spacing-xl 0;
+  }
+
+  .result-item {
+    display: flex;
+    justify-content: space-between;
+    padding: $spacing-md 0;
+
+    .label {
+      color: $color-text-label;
+      font-weight: 600;
+    }
+
+    .value {
+      color: $color-text-primary;
+      font-weight: 700;
+    }
+  }
+
+  .result-dates {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-lg;
+    padding-top: $spacing-lg;
+    border-top: 1px solid $color-border-light;
+
+    @media (max-width: $breakpoint-sm) {
+      grid-template-columns: 1fr;
+    }
+
+    .value {
+      color: $color-green-main;
+    }
+  }
+}
