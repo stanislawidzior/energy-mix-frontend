@@ -1,0 +1,159 @@
+$color-white: #fff;
+$color-bg-light: #fafafa;
+$color-text-dark: #333;
+$color-text-secondary: #558b2f;
+$color-text-primary: #2d5016;
+$color-green-main: #66bb6a;
+$color-light-border: #c8e6c9;
+$color-disabled: #ccc;
+
+$spacing-s: 0.5rem;
+$spacing-m: 0.75rem;
+$spacing-l: 1rem;
+$spacing-xl: 1.5rem;
+
+$border-radius: 6px;
+$border-card: 5px solid $color-green-main;
+$border-light: 2px solid $color-light-border;
+$shadow-card: 0 2px 8px rgba(0, 0, 0, 0.1);
+$breakpoint-m: 768px;
+$breakpoint-s: 600px;
+@mixin green-card {
+  background: $color-white;
+  border-radius: 8px;
+  box-shadow: $shadow-card;
+  border-left: $border-card;
+}
+@mixin disableable {
+    &:hover:not(:disabled) {
+        border-color: $color-green-main;
+    }
+    &:disabled {
+        background-color: $color-disabled;
+        color: $color-disabled;
+    }
+}
+
+.chart-wrapper {
+    margin-top: $spacing-m;
+    h1{
+        @include green-card;
+        width:100%;
+        text-align:center;
+        padding-top: $spacing-xl;
+        padding-bottom: $spacing-xl;
+        color: $color-text-primary;
+        
+    }
+    .chart-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: $spacing-l;
+        padding-top: $spacing-l;
+        grid-auto-rows: minmax(400px, auto);
+        .chart {
+            @include green-card;
+            padding: $spacing-l;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;      
+             height: 100%;
+            .canvas {
+                width: 100% !important;
+                height: 100% !important; 
+             }
+         }
+    }
+}
+.calculator-header {
+    @include green-card;
+    width:100%;
+    text-align:center;
+    padding-top: $spacing-xl;
+    margin-top: $spacing-xl;
+    padding-bottom: $spacing-xl;
+    color: $color-text-primary;
+    
+}
+.time-window-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-xl;
+  padding-top: $spacing-xl;
+  width:100%;
+  margin-bottom: $spacing-xl;
+  @media (max-width: $breakpoint-m) {
+    grid-template-columns: 1fr;
+  }
+
+  .time-window-selector, .time-window-result {
+    @include green-card;
+    padding: $spacing-xl;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-l;
+        h2 {
+            color: $color-text-primary;
+            margin: 0 0 $spacing-xl 0;
+            text-align: center;;
+        }
+    }
+    .time-window-selector{
+        select {
+            padding: $spacing-m;
+            border: $border-light;
+            border-radius: $border-radius;
+            background: $color-bg-light;
+            color: $color-text-dark;
+            cursor: pointer;
+            width: 50%;
+           @include disableable;
+        }
+        .calculate-btn {
+            padding: $spacing-m;
+            background: $color-green-main;
+            color: $color-white;
+            border: none;
+            border-radius: $border-radius;
+            font-weight: bold;
+            cursor: pointer;
+            width: 50%;
+            @include disableable;
+        }
+    }
+    .time-window-result {
+        .result-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: $spacing-s;
+            padding: $spacing-m 0;
+        .label {
+            color: $color-text-secondary;
+            font-weight: bold;
+            }
+
+        .value {
+            color: $color-text-primary;
+            font-weight: bold;
+            }
+        }
+        .result-dates {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: $spacing-l;
+            padding-top: $spacing-l;
+            border-top: 1px solid $color-light-border;
+            @media (max-width: $breakpoint-s) {
+                grid-template-columns: 1fr;
+            }
+        }
+    }
+}
+
+
+
+
