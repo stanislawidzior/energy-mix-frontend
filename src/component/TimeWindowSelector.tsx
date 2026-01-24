@@ -14,13 +14,12 @@ function TimeWindowSelector(windowSizeProps: props) {
   }
   return (
     <div className="time-window-selector">
-      <h3>Select Time Window</h3>
+      <h2>Select Time Window</h2>
       <select 
         id="window-size" 
         value={selectedSize}
         onChange={(e) => setSelectedSize(Number(e.target.value))}
-        disabled={disableButton}
-      >
+        disabled={disableButton}>
           <option value={1}>1 hour</option>
           <option value={2}>2 hours</option>
           <option value={3}>3 hours</option>
@@ -29,7 +28,7 @@ function TimeWindowSelector(windowSizeProps: props) {
           <option value={6}>6 hours</option>
         </select>
       <button className="calculate-btn" onClick={handleCalculate} disabled={disableButton}>
-        Get Recommended Time Window
+        Calculate
       </button>
     </div>
   );

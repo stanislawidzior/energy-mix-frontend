@@ -8,7 +8,6 @@ export const useFetchEnergyMix = () => {
         queryFn: async () => {
             try{
             const response = await axios.get<IEnergyMix>('http://localhost:8080/api/v1/energy-mix', {timeout: 5000});
-            console.log(response)
             return response.data;
             } catch (error) {
                 throw new Error('Failed to connect to the server');

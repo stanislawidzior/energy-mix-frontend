@@ -4,51 +4,61 @@ import { Chart } from 'react-chartjs-2';
 import type { IDailySummary } from '../type/IEnergyMix';
 
 ChartJS.register(PieController, ArcElement, Tooltip, Legend, Title);
-const CHART_COLORS = [
-  'rgb(255, 99, 132)',
-  'rgb(255, 159, 64)',
-  'rgb(255, 205, 86)',
-  'rgb(75, 192, 192)',
-  'rgb(54, 162, 235)',
-  'rgb(153, 102, 255)',
-  'rgb(201, 203, 207)',
-];
+const CHART_COLORS_MAP:Record<string,string> = {
+    hydro: 'rgb(0, 255, 50)',
+    wind: 'rgb(100, 200, 50)',
+    solar: 'rgb(150, 255, 50)',
+    nuclear: 'rgb(200, 255, 50)',
+    biomass: 'rgb(255, 255, 50)',
+    gas: 'rgb(255, 100, 50)',
+    coal: 'rgb(255, 0, 50)', 
+    other: 'rgb(150, 150, 150)'
+}
+  
+
+
 
 function PieCharts() {
+    console.count('PieCharts render');
   const { data, error, isLoading, isFetching } = useFetchEnergyMix();
   if (isLoading || isFetching) return <div>Loading...</div>;
   if (error) return <div>Error occurred: {(error as Error).message}</div>;
   if (!data) return <div>No data available</div>;
 
   function getChartData(day : IDailySummary) {
-    let labels = Object.keys(day.avgEnergyMix);
-    let values = Object.values(day.avgEnergyMix);
-    let colors = CHART_COLORS.slice(0, labels.length);  
+    let labels:string[] = [];
+    let values:number[] = [];
+    let backgroundColors:string[] = [];
+    for(let fuel of Object.keys(CHART_COLORS_MAP)){
+        if(!(fuel in day.avgEnergyMix)) continue;
+        labels.push(fuel);
+        values.push(day.avgEnergyMix[fuel]);
+        backgroundColors.push(CHART_COLORS_MAP[fuel]);
+    }
     return {
-      labels,
-      datasets: [
-        {
-          label: "avarage percentage value",
-          data: values,
-          backgroundColor: colors,
-        },
-      ],
+
+        labels,
+        datasets: [{
+            data: values,
+            backgroundColor: backgroundColors,
+        }]
     };
   };
   function getChartOptions(title: string, day: IDailySummary): ChartConfiguration<'pie'>['options'] {
-  
-  return {
+    return {
     responsive: true,
+    animation:false,
     plugins: {
-      legend: { position: 'top' },
-      title: { display: true, text: title + ": " + day.clean_energy_percentage + "% clean" },
+        legend: { position: 'top' },
+        title: { display: true, text: title + ": " + day.clean_energy_percentage + "% clean energy" },
     },
   };
+    
   }
 
   return (
     <div className="chart-wrapper">
-      <h1>UK Energy Mix 3 day summary</h1>
+    <h1>UK Energy Mix 3 day summary</h1>
     <div className="chart-container">
       
       <div className="chart">
