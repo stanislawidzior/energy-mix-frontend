@@ -14,7 +14,7 @@ function TimeWindowSelector(windowSizeProps: props) {
   
   return (
     <div className="time-window-selector">
-      <h2>Select Time Window</h2>
+      <h2>Select Charging Duration:</h2>
       <select 
         id="window-size" 
         value={selectedSize}

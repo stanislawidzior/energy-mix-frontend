@@ -59,7 +59,7 @@ function PieCharts() {
 
     return (
         <div className="chart-wrapper">
-            <h1>UK Energy Mix 3 day summary</h1>
+            <h1>UK Energy Mix 3 Day Summary</h1>
             <div className="chart-container">
                 <div className="chart">
                     <Chart type="pie" data={getChartData(data.today)} options={getChartOptions("Today", data.today)} />

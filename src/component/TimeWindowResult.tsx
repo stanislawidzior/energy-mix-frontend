@@ -32,7 +32,7 @@ function TimeWindowResult(props : props) {
     
     return (
     <div className="time-window-result">
-      <h2>Optimal Clean Energy Time Window</h2>
+      <h2>Recommended Charging Window:</h2>
       {data && (
         <div className="result-content">
           <div className="result-dates">
@@ -46,7 +46,7 @@ function TimeWindowResult(props : props) {
             </div>
             </div>
             <div className="result-item">
-            <p className="label">Clean Energy Percentage:</p>
+            <p className="label">Clean Energy Share:</p>
             <p className="value">{data.clean_energy_percentage}%</p>
           </div>
         </div>

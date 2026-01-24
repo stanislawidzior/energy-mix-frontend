@@ -67,16 +67,27 @@ $breakpoint-s: 600px;
          }
     }
 }
-
+.calculator-header {
+    @include green-card;
+    width:100%;
+    text-align:center;
+    padding-top: $spacing-xl;
+    margin-top: $spacing-xl;
+    padding-bottom: $spacing-xl;
+    color: $color-text-primary;
+    
+}
 .time-window-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: $spacing-xl;
   padding-top: $spacing-xl;
   width:100%;
+  margin-bottom: $spacing-xl;
   @media (max-width: $breakpoint-m) {
     grid-template-columns: 1fr;
   }
+
   .time-window-selector, .time-window-result {
     @include green-card;
     padding: $spacing-xl;
