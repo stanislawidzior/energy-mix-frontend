@@ -1,9 +1,9 @@
 import { useFetchEnergyMix } from '../hook/useFetchEnergyMix';
-import {Chart as ChartJS, ArcElement, PieController, Tooltip, Legend, Title, type ChartConfiguration,} from 'chart.js';
+import {Chart as ChartJS, ArcElement, PieController, Tooltip, Legend, Title, SubTitle, type ChartConfiguration} from 'chart.js';
 import { Chart } from 'react-chartjs-2';
 import type { IDailySummary } from '../type/IEnergyMix';
 
-ChartJS.register(PieController, ArcElement, Tooltip, Legend, Title);
+ChartJS.register(PieController, ArcElement, Tooltip, Legend, Title, SubTitle);
 const CHART_COLORS_MAP:Record<string,string> = {
     hydro: 'rgb(0, 255, 50)',
     wind: 'rgb(100, 200, 50)',
@@ -51,9 +51,15 @@ function PieCharts() {
             maintainAspectRatio: true,
             plugins:{
                 legend: { position: 'bottom' },
-                title: { display: true, text: title + ": " + day.clean_energy_percentage + "% clean energy" },
-            },
-        };
+                title: { display: true, text: title , font: { size: 18 , weight: 'bold'}},
+                subtitle: {display: true,text: day.clean_energy_percentage + "% Clean Energy",
+                    font: {
+                    family: "Arial",
+                    size: 15,
+                    weight: "bold",
+                    }
+                    },
+                }};
     }
   
 
@@ -68,7 +74,7 @@ function PieCharts() {
                     <Chart type="pie" data={getChartData(data.tomorrow)} options={getChartOptions("Tomorrow", data.tomorrow)} />
                 </div>
                 <div className="chart">
-                    <Chart type="pie" data={getChartData(data.day_after_tomorrow)} options={getChartOptions("In two days", data.day_after_tomorrow)} />
+                    <Chart type="pie" data={getChartData(data.day_after_tomorrow)} options={getChartOptions("in Two Days", data.day_after_tomorrow)} />
                 </div>
             </div>
         </div>
