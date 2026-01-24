@@ -32,7 +32,7 @@ function TimeWindowResult(props : props) {
     
     return (
     <div className="time-window-result">
-      <h2>Time window of highest average clean energy result</h2>
+      <h2>Optimal Clean Energy Time Window</h2>
       {data && (
         <div className="result-content">
           <div className="result-dates">

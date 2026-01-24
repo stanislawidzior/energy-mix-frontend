@@ -45,27 +45,26 @@ $breakpoint-s: 600px;
         color: $color-text-primary;
         
     }
-
-
-
     .chart-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 2rem;
-        padding: 2rem;
-
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: $spacing-l;
+        padding-top: $spacing-l;
+        grid-auto-rows: minmax(400px, auto);
         .chart {
-        @include green-card;
-         flex: 1 1 300px;
-        max-width: 400px;
-        padding: 1rem;
-
-            canvas {
-            width: 100% !important;
-            height: auto !important;
-            }
-        }
+            @include green-card;
+            padding: $spacing-l;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;      
+             height: 100%;
+            .canvas {
+                width: 100% !important;
+                height: 100% !important; 
+             }
+         }
     }
 }
 
@@ -73,10 +72,8 @@ $breakpoint-s: 600px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: $spacing-xl;
-  padding: $spacing-xl;
-  max-width: 1000px;
-  margin: 0 auto;
-
+  padding-top: $spacing-xl;
+  width:100%;
   @media (max-width: $breakpoint-m) {
     grid-template-columns: 1fr;
   }
@@ -101,8 +98,7 @@ $breakpoint-s: 600px;
             background: $color-bg-light;
             color: $color-text-dark;
             cursor: pointer;
-            width: 100%;
-            max-width: 250px;
+            width: 50%;
            @include disableable;
         }
         .calculate-btn {
@@ -113,8 +109,7 @@ $breakpoint-s: 600px;
             border-radius: $border-radius;
             font-weight: bold;
             cursor: pointer;
-            width: 100%;
-            max-width: 250px;
+            width: 50%;
             @include disableable;
         }
     }

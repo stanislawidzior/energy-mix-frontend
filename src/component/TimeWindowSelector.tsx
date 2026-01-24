@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 type props = {
     setWindowSize: (size: number) => void,
     windowSize: number,
@@ -12,6 +11,7 @@ function TimeWindowSelector(windowSizeProps: props) {
   function handleCalculate(){
     setWindowSize(selectedSize);
   }
+  
   return (
     <div className="time-window-selector">
       <h2>Select Time Window</h2>

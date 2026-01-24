@@ -17,6 +17,9 @@ export const useFetchTimeWindow = (timeWindowSize : number) =>{
                     else if(error.response?.data?.code == "500"){
                         throw new Error('Server error. Please try again later.');
                     }
+                    else{    
+                        throw new Error("Could not fetch.");
+                        }
                 }
             }
         },

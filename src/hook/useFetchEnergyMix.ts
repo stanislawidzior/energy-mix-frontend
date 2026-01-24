@@ -10,7 +10,10 @@ export const useFetchEnergyMix = () => {
             const response = await axios.get<IEnergyMix>('http://localhost:8080/api/v1/energy-mix', {timeout: 5000});
             return response.data;
             } catch (error) {
-                throw new Error('Failed to connect to the server');
+                if(axios.isAxiosError(error)){
+                    throw new Error("Could not fetch energy mix data.");
+                }
+               
             }
         },
         staleTime: 5 * 60 * 1000
