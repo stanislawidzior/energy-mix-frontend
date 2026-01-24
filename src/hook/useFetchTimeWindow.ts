@@ -1,13 +1,14 @@
 import {useQuery} from "@tanstack/react-query";
 import axios from 'axios'
 import type { ITimeWindow } from "../type/ITimeWindow";
+import { API_CONFIG } from "../config/api";
 
 export const useFetchTimeWindow = (timeWindowSize : number) =>{
     return useQuery({
         queryKey: ['time-window', timeWindowSize],
         queryFn: async () => {
             try{
-            const response = await axios.get<ITimeWindow>('http://localhost:8080/api/v1/time-window?size=' + timeWindowSize, {"timeout": 5000});
+            const response = await axios.get<ITimeWindow>(`${API_CONFIG.endpoints.timeWindow}?size=${timeWindowSize}`, {timeout: API_CONFIG.timeout});
             return response.data;
             }catch (error) {
                 if(axios.isAxiosError(error)){

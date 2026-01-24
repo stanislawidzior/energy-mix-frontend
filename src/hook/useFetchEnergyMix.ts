@@ -1,13 +1,14 @@
 import {useQuery} from "@tanstack/react-query";
 import axios from 'axios'
 import type { IEnergyMix } from "../type/IEnergyMix";
+import { API_CONFIG } from "../config/api";
 
 export const useFetchEnergyMix = () => {
     return useQuery({
         queryKey: ['energy-mix'],
         queryFn: async () => {
             try{
-            const response = await axios.get<IEnergyMix>('http://localhost:8080/api/v1/energy-mix', {timeout: 5000});
+            const response = await axios.get<IEnergyMix>(API_CONFIG.endpoints.energyMix, {timeout: API_CONFIG.timeout});
             return response.data;
             } catch (error) {
                 if(axios.isAxiosError(error)){
