@@ -3,6 +3,8 @@ Aplikacja do wyświetlania miksu energetycznego w wielkiej brytanii oraz do znaj
 Frontend wyświetla dane w diagramach kołowych i umożliwia wybór oraz obliczenie najlepszego okna ładowania.
 ## Link do zdeployowanej aplikacji
 https://energy-mix-frontend-cz92.onrender.com/
+
+Aplikacja może przy pierwszym połączeniu ladować się nawet 3 minuty. Dzieje się tak ponieważ render automatycznie przechodzi w tryb uśpienia po 15 minutach braku aktywności
 ## REST API używane przez frontend
 https://github.com/stanislawidzior/energy-mix
 - base url - https://energy-mix-nzr5.onrender.com/
