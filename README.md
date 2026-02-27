@@ -1,7 +1,7 @@
 ## Opis
 Aplikacja do wyświetlania miksu energetycznego w wielkiej brytanii oraz do znajdywania optymalnego czasu ładowania pojazdu elektrycznego pod względem zużycia czystej energii.
 Frontend wyświetla dane w diagramach kołowych i umożliwia wybór oraz obliczenie najlepszego okna ładowania.
-## Link do zdepoloyowanej aplikacji
+## Link do zdeployowanej aplikacji
 https://energy-mix-frontend-cz92.onrender.com/
 ## REST API używane przez frontend
 https://github.com/stanislawidzior/energy-mix
